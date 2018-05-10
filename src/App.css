@@ -1,0 +1,57 @@
+html, body, #root {
+    height: 100%;
+    margin: auto;
+    background: linear-gradient(50deg, #15e4f1, #bdf1a6, #f1928a);
+}
+
+header {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.date-buttons {
+    color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.date-value {
+    margin: 0 10px;
+}
+
+.tasks-li {
+    margin-top: 30px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.task-block {
+    width: 30%;
+    margin: 0 auto;
+    border: 3px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(154, 231, 145);
+    cursor: pointer;
+}
+
+.icon-in-button {
+    margin-right: 5px;
+}
+
+.task-button-left {
+    margin-right: 25px;
+}
