@@ -7,17 +7,9 @@ export class TaskListComponent extends Component {
     constructor(props) {
         super(props);
 
-        let storageState = localStorage.getItem("state");
-        let initState;
-
-        if (storageState != null) {
-            storageState = JSON.parse(storageState);
-            initState = {...storageState};
-        } else {
-            initState = {tasks: Array[Task] = []}
-        }
-
-        this.state = initState;
+        this.state = {
+            tasks: Array[Task] = []
+        };
     }
 
     render() {
@@ -50,12 +42,11 @@ export class TaskListComponent extends Component {
         let tasks = this.state.tasks;
         tasks.splice(index, 1);
         this.setState({tasks: tasks});
-        localStorage.setItem("state", JSON.stringify({...this.state}))
     };
 
     saveTask = (task: Task, index: number) => {
         let tasks = this.state.tasks;
         tasks[index] = task;
-        localStorage.setItem("state", JSON.stringify({...this.state}))
+        this.setState({tasks: tasks});
     }
 }

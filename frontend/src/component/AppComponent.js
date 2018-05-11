@@ -36,7 +36,7 @@ class AppComponent extends Component {
                 </header>
 
                 <div className="container">
-                    <TaskListComponent/>
+                    <TaskListComponent date={date.format("DD.MM.YYYY")}/>
                 </div>
             </div>
         );
