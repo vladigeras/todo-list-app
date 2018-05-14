@@ -23,16 +23,16 @@ export class TaskComponent extends Component {
                 <div className="task-block">
                     <div className="form-group">
                         <input type="text" className="form-control form-control-sm" id="task-title" name="title"
-                               placeholder="Enter title" value={this.state.title} onChange={this.handleChangeFields}/>
+                               placeholder="Enter title" value={this.state.title || ''} onChange={this.handleChangeFields}/>
                     </div>
                     <div className="form-group">
                         <textarea className="form-control form-control-sm" id="task-description" name="description"
-                                  placeholder="Enter description" value={this.state.description}
+                                  placeholder="Enter description" value={this.state.description || ''}
                                   onChange={this.handleChangeFields}/>
                     </div>
                     <div className="form-group form-check">
                         <input type="checkbox" className="form-check-input" id="task-checkbox" name="isImportant"
-                               checked={this.state.isImportant}
+                               checked={this.state.isImportant || false}
                                onChange={this.handleChangeFields}/>
                         <label className="form-check-label" htmlFor="task-checkbox">Is important</label>
                     </div>
