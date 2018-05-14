@@ -11,7 +11,7 @@ export class TaskComponent extends Component {
             description: this.props.task.description,
             isImportant: this.props.task.isImportant,
 
-            editing: Boolean
+            editing: this.props.task.id == null
         };
     }
 

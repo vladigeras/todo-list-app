@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Task} from "../model/Task";
 import {TaskComponent} from "./TaskComponent";
+import axios from 'axios'
 
 export class TaskListComponent extends Component {
 
@@ -10,6 +11,13 @@ export class TaskListComponent extends Component {
         this.state = {
             tasks: Array[Task] = []
         };
+    }
+
+    componentDidMount() {
+        axios.get("/task").then(res => {
+            let tasks = res.data;
+            this.setState({tasks: tasks})
+        })
     }
 
     render() {
