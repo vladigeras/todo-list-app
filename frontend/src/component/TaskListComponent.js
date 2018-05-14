@@ -50,14 +50,29 @@ export class TaskListComponent extends Component {
     };
 
     deleteTask = (index) => {
-        // let tasks = this.state.tasks;
-        // tasks.splice(index, 1);
-        // this.setState({tasks: tasks});
+        let tasks = this.state.tasks;
+        let deleted = tasks[index];
+
+        if (deleted.id !== undefined) { //delete from server
+            axios.delete("/task/" + deleted.id).then(res => {
+                console.log("Task was deleted successful");
+                this.getTasksByDate(this.props.date)
+            });
+        } else {    //delete from array
+
+        }
     };
 
     saveTask = (task: Task) => {
-        task.date = moment(this.props).format("YYYY-MM-DD");
-        axios.post("/task/", task).then(res => console.log("Task was saved successful"))
+        if (task.id == null) {      //create new
+            task.date = moment(this.props.date, "DD.MM.YYYY").format("YYYY-MM-DD");    //server wait this date format
+            axios.post("/task/", task).then(res => {
+                console.log("Task was saved successful");
+                this.getTasksByDate(this.props.date)
+            })
+        } else {    //update existing
+            console.log(task.id)
+        }
     };
 
     getTasksByDate(date) {
