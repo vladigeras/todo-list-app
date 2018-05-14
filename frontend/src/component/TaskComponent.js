@@ -7,9 +7,11 @@ export class TaskComponent extends Component {
         super(props);
 
         this.state = {
+            id: this.props.task.id,
             title: this.props.task.title,
             description: this.props.task.description,
             isImportant: this.props.task.isImportant,
+            date: this.props.task.date,
 
             editing: this.props.task.id == null
         };
@@ -65,7 +67,8 @@ export class TaskComponent extends Component {
 
     saveTask = () => {
         this.setState({editing: false});
-        this.props.saveTask(new Task(this.state.title, this.state.description, this.state.isImportant), this.props.index);
+        let task = new Task(this.state.id, this.state.title, this.state.description, this.state.isImportant, this.state.date);
+        this.props.saveTask(task);
     };
 
     deleteTask = () => {

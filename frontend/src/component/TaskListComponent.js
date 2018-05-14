@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Task} from "../model/Task";
 import {TaskComponent} from "./TaskComponent";
 import axios from 'axios'
+import moment from "moment";
 
 export class TaskListComponent extends Component {
 
@@ -18,6 +19,7 @@ export class TaskListComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        this.props = nextProps;
         this.getTasksByDate(nextProps.date);
     }
 
@@ -48,23 +50,14 @@ export class TaskListComponent extends Component {
     };
 
     deleteTask = (index) => {
-        let tasks = this.state.tasks;
-        tasks.splice(index, 1);
-        this.setState({tasks: tasks});
+        // let tasks = this.state.tasks;
+        // tasks.splice(index, 1);
+        // this.setState({tasks: tasks});
     };
 
-    saveTask = (task: Task, index: number) => {
-        let tasks = this.state.tasks;
-        tasks[index] = task;
-        this.setState({tasks: tasks});
-
-        axios.post("/task/", {
-            id: task.id,
-            title: task.title,
-            description: task.description,
-            isImportant: task.isImportant,
-            date: this.props.date
-        }).then(res => console.log("Task was saved successful"))
+    saveTask = (task: Task) => {
+        task.date = moment(this.props).format("YYYY-MM-DD");
+        axios.post("/task/", task).then(res => console.log("Task was saved successful"))
     };
 
     getTasksByDate(date) {
