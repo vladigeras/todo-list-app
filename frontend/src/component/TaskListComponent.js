@@ -14,10 +14,11 @@ export class TaskListComponent extends Component {
     }
 
     componentDidMount() {
-        axios.get("/task").then(res => {
-            let tasks = res.data;
-            this.setState({tasks: tasks})
-        })
+        this.getTasksByDate(this.props.date);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.getTasksByDate(nextProps.date);
     }
 
     render() {
@@ -56,5 +57,21 @@ export class TaskListComponent extends Component {
         let tasks = this.state.tasks;
         tasks[index] = task;
         this.setState({tasks: tasks});
+
+        axios.post("/task/", {
+            id: task.id,
+            title: task.title,
+            description: task.description,
+            isImportant: task.isImportant,
+            date: this.props.date
+        }).then(res => console.log("Task was saved successful"))
+    };
+
+    getTasksByDate(date) {
+        this.setState({tasks: []});
+        axios.get("/task?date=" + date).then(res => {
+            let tasks = res.data;
+            this.setState({tasks: tasks})
+        })
     }
 }
