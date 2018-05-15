@@ -71,7 +71,10 @@ export class TaskListComponent extends Component {
                 this.getTasksByDate(this.props.date)
             })
         } else {    //update existing
-            console.log(task.id)
+            axios.put("/task/" + task.id + "/", task).then(res => {
+                console.log("Task was updated successful");
+                this.getTasksByDate(this.props.date)
+            })
         }
     };
 
