@@ -59,7 +59,8 @@ export class TaskListComponent extends Component {
                 this.getTasksByDate(this.props.date)
             });
         } else {    //delete from array
-
+            tasks.splice(index, 1);
+            this.setState({tasks: tasks})
         }
     };
 
